@@ -1,6 +1,4 @@
 export interface ArtistCredit extends ArtistMinimal {
-  //if name is null take from artist.name
-  //id from artist.id
   joinphrase: string | null;
 }
 
@@ -8,7 +6,8 @@ export interface Release {
   id: string;
   title: string;
   artistId: string;
-  date: string | null; //if null take from release-group.date
+  date: string | null;
+  date_for_display: string;
   "release-group": { "primary-type": string | null };
   "artist-credit": ArtistCredit[];
   media: Media[];

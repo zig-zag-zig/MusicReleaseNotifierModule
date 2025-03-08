@@ -7,8 +7,9 @@ export interface Release {
   title: string;
   artistId: string;
   date: string | null;
+  disambiguation: string | null;
   date_for_display: string;
-  "release-group": { "primary-type": string | null };
+  "release-group": { "primary-type": string | null, id: string };
   "artist-credit": ArtistCredit[];
   media: Media[];
   cover_image: string | null;
@@ -29,6 +30,7 @@ export interface Track {
 
 export interface ArtistMinimal {
   id: string;
+  disambiguation: string | null;
   name: string;
   image: string | null;
   profile: string | null;

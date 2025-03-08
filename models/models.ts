@@ -9,7 +9,7 @@ export interface Release {
   date: string | null;
   disambiguation: string | null;
   date_for_display: string;
-  "release-group": { "primary-type": string | null, id: string };
+  "release-group": { "primary-type": string | null, id: string | null };
   "artist-credit": ArtistCredit[];
   media: Media[];
   cover_image: string | null;

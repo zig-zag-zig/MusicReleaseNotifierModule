@@ -2,17 +2,24 @@ export interface ArtistCredit extends ArtistMinimal {
   joinphrase: string | null;
 }
 
-export interface Release {
+export interface ReleaseMinimal {
   id: string;
   title: string;
-  artistId: string;
   date: string | null;
   disambiguation: string | null;
+  cover_image: string | null;
+}
+
+export interface ReleaseGroup extends ReleaseMinimal {
+  "primary-type": string | null;
+}
+
+export interface Release extends ReleaseMinimal {
+  artistId: string;
   date_for_display: string;
-  "release-group": { "primary-type": string | null, id: string | null };
+  "release-group": ReleaseGroup | null;
   "artist-credit": ArtistCredit[];
   media: Media[];
-  cover_image: string | null;
 }
 
 export interface Media {

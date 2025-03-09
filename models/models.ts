@@ -40,13 +40,32 @@ export interface ArtistMinimal {
   disambiguation: string | null;
   name: string;
   image: string | null;
-  profile: string | null;
 }
 
 export interface Artist extends ArtistMinimal {
+  type: "Person" | "Group";
   aliases: { name: string }[];
-  releases: Release[];
+  members: Member[];
+  lifeSpan: {
+    begin: string | null;
+    end: string | null;
+    ended: boolean;
+  };
+  beginArea: {
+    name: string | null;
+  };
+  area: {
+    name: string | null;
+  };
   relations: { url: { resource: string } }[];
+}
+
+export interface Member {
+  id: string;
+  name: string;
+  begin: string | null;
+  end: string | null;
+  type: string;
 }
 
 export interface ArtistSearchResult {

@@ -56,7 +56,6 @@ export interface Artist extends ArtistMinimal {
   area: {
     name: string | null;
   };
-  relations: { url: { resource: string } }[];
 }
 
 export interface ArtistSearchResult {

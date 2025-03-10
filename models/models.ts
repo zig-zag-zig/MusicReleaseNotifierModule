@@ -45,7 +45,6 @@ export interface ArtistMinimal {
 export interface Artist extends ArtistMinimal {
   type: "Person" | "Group";
   aliases: { name: string }[];
-  members: Member[];
   lifeSpan: {
     begin: string | null;
     end: string | null;
@@ -58,14 +57,6 @@ export interface Artist extends ArtistMinimal {
     name: string | null;
   };
   relations: { url: { resource: string } }[];
-}
-
-export interface Member {
-  id: string;
-  name: string;
-  begin: string | null;
-  end: string | null;
-  type: string;
 }
 
 export interface ArtistSearchResult {

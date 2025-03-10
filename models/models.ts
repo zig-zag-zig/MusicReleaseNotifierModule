@@ -53,9 +53,6 @@ export interface Artist extends ArtistMinimal {
   beginArea: {
     name: string | null;
   };
-  area: {
-    name: string | null;
-  };
 }
 
 export interface ArtistSearchResult {

@@ -42,13 +42,19 @@ const parseDateToNumber = (dateStr: string | null): number => {
 export const formatDate = (dateStr: string | null): string => {
   const unixTimeStamp = parseDateToNumber(dateStr);
   if (unixTimeStamp === dateTimeMin) return "Unknown date";
+  let result = '';
+  const date = dateStr?.split('-') ?? [];
+  if (date.length > 1) {
+    if (date.length === 3) {
+      result = date[2].padStart(2, "0") + ".";
+    }
+    result += date[1].padStart(2, "0") + ".";
+  }
+  if (date.length > 0) {
+    result += date[0];
+  }
 
-  const date = new Date(unixTimeStamp);
-  const day = String(date.getDate()).padStart(2, "0")
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const year = date.getFullYear();
-
-  return `${day}.${month}.${year}`;
+  return result;
 };
 
 export const isFutureDate = (dateString: string | null): boolean => {

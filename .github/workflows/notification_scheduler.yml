@@ -1,0 +1,30 @@
+name: Random Daily Trigger (Norwegian Time)
+
+on:
+  schedule:
+    - cron: "0 14 * * *" # 14:00 UTC (will be adjusted to 16:00 Norwegian time)
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Convert to Norwegian Time & Wait Random Time
+        run: |
+          export TZ=Europe/Oslo
+          current_hour=$(date +%H)
+          echo "Current hour in Norway: $current_hour"
+
+          # If the current hour is not 16, adjust the time
+          if [ $current_hour -ne 16 ]; then
+            echo "Adjusting for daylight saving time..."
+            sleep $(( (16 - current_hour) * 3600 ))
+          fi
+
+          # Calculate random delay between 16:00 and 22:00
+          max_wait_seconds=$(( (22 - 16) * 3600 )) # 6 hours in seconds
+          random_delay=$((RANDOM % max_wait_seconds))
+          echo "Waiting for $random_delay seconds..."
+          sleep $random_delay
+
+      - name: Call API
+        run: curl "${{ secrets.NOTIFY_URL }}"

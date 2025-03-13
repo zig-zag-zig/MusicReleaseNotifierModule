@@ -1,4 +1,4 @@
-name: Random Daily Trigger (Norwegian Time)
+name: Random Daily Trigger API Caller
 
 on:
   schedule:

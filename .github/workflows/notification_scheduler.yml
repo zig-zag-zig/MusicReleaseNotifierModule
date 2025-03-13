@@ -8,7 +8,7 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Convert to Norwegian Time & Wait Random Time
+      - name: Wait Random Time
         run: |
           # Calculate random delay between 15:00 and 17:00
           max_wait_seconds=$(( (17 - 15) * 3600 )) # 2 hours in seconds

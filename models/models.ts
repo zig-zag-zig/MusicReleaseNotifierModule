@@ -8,6 +8,7 @@ export interface ReleaseMinimal {
   date: string | null;
   disambiguation: string | null;
   cover_image: string | null;
+  "artist-credit": ArtistCredit[];
 }
 
 export interface ReleaseGroup extends ReleaseMinimal {
@@ -18,7 +19,6 @@ export interface Release extends ReleaseMinimal {
   artistId: string;
   date_for_display: string;
   "release-group": ReleaseGroup | null;
-  "artist-credit": ArtistCredit[];
   media: Media[];
 }
 

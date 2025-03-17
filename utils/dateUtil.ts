@@ -1,4 +1,20 @@
-import { Release } from "../models/models";
+import { Release, ReleaseGroups } from "../models/models";
+
+export const sortReleaseGroupsByDate = (releaseGroups: ReleaseGroups): ReleaseGroups => {
+  const sortedEntries = Object.entries(releaseGroups)
+    .map(([releaseGroupId, releases]) => {
+      sortReleasesByDate(releases);
+
+      const releaseGroupDate = parseDateToNumber(releases[0]["release-group"]?.date ?? null);
+      const oldestReleaseDate = parseDateToNumber(releases[releases.length - 1]?.date);
+      const sortKey = releaseGroupDate !== dateTimeMin ? releaseGroupDate : oldestReleaseDate;
+
+      return { releaseGroupId, releases, sortKey };
+    })
+    .sort((a, b) => b.sortKey - a.sortKey);
+
+  return Object.fromEntries(sortedEntries.map(({ releaseGroupId, releases }) => [releaseGroupId, releases]));
+};
 
 export const sortReleasesByDate = (releases: Release[]) => {
   releases.sort((a, b) => {

@@ -22,6 +22,10 @@ export interface Release extends ReleaseMinimal {
   media: Media[];
 }
 
+export interface ReleaseGroups {
+  [releaseGroupId: string]: Release[];
+};
+
 export interface Media {
   "track-count": number;
   tracks: Track[] | null;

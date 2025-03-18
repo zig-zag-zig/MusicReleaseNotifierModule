@@ -22,7 +22,7 @@ export interface Release extends ReleaseMinimal {
   media: Media[];
 }
 
-export interface ReleaseGroups {
+export interface GroupedReleases {
   [releaseGroupId: string]: Release[];
 };
 

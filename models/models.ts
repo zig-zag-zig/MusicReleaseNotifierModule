@@ -65,6 +65,7 @@ export interface Member {
   name: string;
   begin: string | null;
   end: string | null;
+  type: "Person" | "Group";
 }
 
 export interface ArtistSearchResult {

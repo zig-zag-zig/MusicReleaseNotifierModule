@@ -67,6 +67,7 @@ export interface Member {
   end: string | null;
   artistType: "Person" | "Group";
   type: "member of band" | "subgroup";
+  direction: "forward" | "backward"
 }
 
 export interface ArtistSearchResult {

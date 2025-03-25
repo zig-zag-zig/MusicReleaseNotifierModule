@@ -65,6 +65,7 @@ export interface Member {
   name: string;
   begin: string | null;
   end: string | null;
+  artistType: "Person" | "Group";
   type: "member of band" | "subgroup";
 }
 

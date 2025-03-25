@@ -7,7 +7,7 @@ export interface ReleaseMinimal {
   title: string;
   date: string | null;
   disambiguation: string | null;
-  cover_image: string | null;
+  cover_image?: string | null;
 }
 
 export interface ReleaseGroup extends ReleaseMinimal {
@@ -36,14 +36,14 @@ export interface Track {
   title: string;
   "artist-credit": ArtistCredit[];
   length: number | null;
-  lyrics: string | null;
+  lyrics?: string | null;
 }
 
 export interface ArtistMinimal {
   id: string;
   disambiguation: string | null;
   name: string;
-  image: string | null;
+  image?: string | null;
 }
 
 export interface Artist extends ArtistMinimal {

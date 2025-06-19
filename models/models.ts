@@ -26,11 +26,6 @@ export interface GroupedReleases {
   [releaseGroupId: string]: Release[];
 };
 
-export interface ArtistReleases {
-  groupedReleases: GroupedReleases;
-  releasesFetchTime: Date;
-}
-
 export interface NewReleases {
   releases: Release[];
   releasesFetchTime: Date;

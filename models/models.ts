@@ -31,6 +31,11 @@ export interface NewReleases {
   releasesFetchTime: Date;
 }
 
+export interface RemoveReleaseResult {
+  releaseId: string;
+  removedDateTime: Date;
+}
+
 export interface Media {
   "track-count": number;
   tracks: Track[] | null;

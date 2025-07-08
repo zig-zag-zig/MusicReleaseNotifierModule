@@ -26,11 +26,6 @@ export interface GroupedReleases {
   [releaseGroupId: string]: Release[];
 };
 
-export interface NewReleases {
-  releases: Release[];
-  releasesFetchTime: Date;
-}
-
 export interface Media {
   "track-count": number;
   tracks: Track[] | null;

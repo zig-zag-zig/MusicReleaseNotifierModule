@@ -20,6 +20,8 @@ export interface Release extends ReleaseMinimal {
   "release-group": ReleaseGroup | null;
   "artist-credit": ArtistCredit[];
   media: Media[];
+  releasesInGroup?: Release[];
+  releaseGroupCount?: number;
 }
 
 export interface GroupedReleases {

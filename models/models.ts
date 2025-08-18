@@ -83,3 +83,9 @@ export interface ReleaseResult {
 export interface ReleasesGroupedByType {
   [releaseType: string]: Release[];
 }
+
+export interface PaginatedReleasesGroupedByType {
+  releases: ReleasesGroupedByType;
+  totalCounts: { [releaseType: string]: number };
+  hasMore: { [releaseType: string]: boolean };
+}

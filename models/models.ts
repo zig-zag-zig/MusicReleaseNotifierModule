@@ -79,3 +79,7 @@ export interface ReleaseResult {
   releases: Release[];
   "release-count": number;
 }
+
+export interface ReleasesGroupedByType {
+  [releaseType: string]: Release[];
+}

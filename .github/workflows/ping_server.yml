@@ -10,5 +10,4 @@ jobs:
 
     steps:
       - name: Send GET request to server
-        run: |
-          curl --max-time 120 "${{ secrets.SERVER_URL }}"
+        run: curl "${{ secrets.SERVER_URL }}"

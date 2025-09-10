@@ -10,9 +10,8 @@ jobs:
     steps:
       - name: Wait Random Time
         run: |
-          # Calculate random delay between 15:00 and 17:00
-          max_wait_seconds=$(( (17 - 15) * 3600 )) # 2 hours in seconds
-          random_delay=$((RANDOM % max_wait_seconds))
+          # Calculate random delay between 15:00 and 15:30
+          random_delay=$((RANDOM % 1800))
           echo "Waiting for $random_delay seconds..."
           sleep $random_delay
 

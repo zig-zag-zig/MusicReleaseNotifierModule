@@ -1,32 +1,16 @@
-import { GroupedReleases, Release } from "../models/models";
-
-export const sortReleaseGroupsByDate = (releaseGroups: GroupedReleases, sortReleases: boolean): GroupedReleases => {
-  const sortedEntries = Object.entries(releaseGroups)
-    .map(([releaseGroupId, releases]) => {
-      if (sortReleases) sortReleasesByDate(releases);
-
-      const releaseGroupDate = parseDateToNumber(releases[0]["release-group"]?.date ?? null);
-      const oldestReleaseDate = parseDateToNumber(releases[releases.length - 1]?.date);
-      const sortKey = releaseGroupDate !== dateTimeMin ? releaseGroupDate : oldestReleaseDate;
-
-      return { releaseGroupId, releases, sortKey };
-    })
-    .sort((a, b) => b.sortKey - a.sortKey);
-
-  return Object.fromEntries(sortedEntries.map(({ releaseGroupId, releases }) => [releaseGroupId, releases]));
-};
+import { Release } from "../models/models";
 
 export const sortReleasesByDate = (releases: Release[]) => {
   releases.sort((a, b) => {
-    const dateA = parseDateToNumber(a.date);
-    const dateB = parseDateToNumber(b.date);
+    const dateA = dateToTimestamp(a.date);
+    const dateB = dateToTimestamp(b.date);
     return dateB - dateA;
   });
 };
 
 const dateTimeMin = -8640000000000000;
 
-const parseDateToNumber = (dateStr: string | null): number => {
+export const dateToTimestamp = (dateStr: string | null): number => {
   if (!dateStr?.trim()) return dateTimeMin;
 
   const parsedDate = new Date(dateStr);
@@ -56,7 +40,7 @@ const parseDateToNumber = (dateStr: string | null): number => {
 };
 
 export const formatDate = (dateStr: string | null): string => {
-  const unixTimeStamp = parseDateToNumber(dateStr);
+  const unixTimeStamp = dateToTimestamp(dateStr);
   if (unixTimeStamp === dateTimeMin) return "Unknown date";
   let result = '';
   const date = dateStr?.split('-') ?? [];
@@ -76,5 +60,5 @@ export const formatDate = (dateStr: string | null): string => {
 export const isFutureDate = (dateString: string | null): boolean => {
   const now = new Date();
   now.setHours(0, 0, 0, 0);
-  return parseDateToNumber(dateString) > now.getTime();
+  return dateToTimestamp(dateString) > now.getTime();
 };

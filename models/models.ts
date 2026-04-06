@@ -14,6 +14,10 @@ export interface ReleaseGroup extends ReleaseMinimal {
   "primary-type": string | null;
 }
 
+export interface ArtistReleaseGroup extends ReleaseGroup {
+  releaseIds: string[];
+}
+
 export interface Release extends ReleaseMinimal {
   artistId: string;
   date_for_display: string;
@@ -21,10 +25,6 @@ export interface Release extends ReleaseMinimal {
   "artist-credit": ArtistCredit[];
   media: Media[];
 }
-
-export interface GroupedReleases {
-  [releaseGroupId: string]: Release[];
-};
 
 export interface Media {
   "track-count": number;

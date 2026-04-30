@@ -7,7 +7,6 @@ export interface ReleaseMinimal {
   title: string;
   date: string | null;
   disambiguation: string | null;
-  cover_image?: string | null;
 }
 
 export interface ReleaseGroup extends ReleaseMinimal {
@@ -23,6 +22,7 @@ export interface Release extends ReleaseMinimal {
   date_for_display: string;
   "release-group": ReleaseGroup | null;
   "artist-credit": ArtistCredit[];
+  cover_image?: string | null;
   media: Media[];
 }
 
@@ -36,14 +36,12 @@ export interface Track {
   title: string;
   "artist-credit": ArtistCredit[];
   length: number | null;
-  lyrics?: string | null;
 }
 
 export interface ArtistMinimal {
   id: string;
   disambiguation: string | null;
   name: string;
-  image?: string | null;
 }
 
 export interface Artist extends ArtistMinimal {
@@ -79,3 +77,16 @@ export interface ReleaseResult {
   releases: Release[];
   "release-count": number;
 }
+
+export type ReleaseGroupCoverTaskResult = {
+  artistId: string;
+  covers: { [releaseGroupId: string]: string | null | undefined };
+};
+
+export type TrackLyricsTaskResult = {
+  tracks: { [trackId: string]: string | null | undefined };
+};
+
+export type ArtistProfileImageTaskResult = {
+  artists: { [artistId: string]: string | null | undefined };
+};

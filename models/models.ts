@@ -1,3 +1,5 @@
+export type RemoteValueState = string | null | undefined;
+
 export interface ArtistCredit extends ArtistMinimal {
   joinphrase: string | null;
 }
@@ -7,9 +9,15 @@ export interface ReleaseMinimal {
   title: string;
   date: string | null;
   disambiguation: string | null;
+  releaseGroupId: string | null;
+  cover_url: RemoteValueState;
 }
 
-export interface ReleaseGroup extends ReleaseMinimal {
+export interface ReleaseGroup {
+  id: string;
+  title: string;
+  date: string | null;
+  disambiguation: string | null;
   "primary-type": string | null;
 }
 
@@ -22,7 +30,6 @@ export interface Release extends ReleaseMinimal {
   date_for_display: string;
   "release-group": ReleaseGroup | null;
   "artist-credit": ArtistCredit[];
-  cover_image?: string | null;
   media: Media[];
 }
 
@@ -80,13 +87,24 @@ export interface ReleaseResult {
 
 export type ReleaseGroupCoverTaskResult = {
   artistId: string;
-  covers: { [releaseGroupId: string]: string | null | undefined };
+  covers: { [releaseGroupId: string]: RemoteValueState };
+};
+
+export type ReleaseGroupReleaseCoverTaskResult = {
+  releaseGroupId: string;
+  covers: { [releaseId: string]: RemoteValueState };
 };
 
 export type TrackLyricsTaskResult = {
-  tracks: { [trackId: string]: string | null | undefined };
+  releaseId: string;
+  tracks: { [trackId: string]: RemoteValueState };
 };
 
 export type ArtistProfileImageTaskResult = {
-  artists: { [artistId: string]: string | null | undefined };
+  artists: { [artistId: string]: RemoteValueState };
+};
+
+export type ReleaseGroupReleaseListItem = {
+  id: string;
+  title: string;
 };

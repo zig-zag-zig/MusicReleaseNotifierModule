@@ -85,6 +85,11 @@ export interface ReleaseResult {
   "release-count": number;
 }
 
+export type NewReleasesResult = {
+  releases: Release[];
+  releaseCoverTaskId: string;
+};
+
 export type ReleaseGroupCoverTaskResult = {
   artistId: string;
   covers: { [releaseGroupId: string]: RemoteValueState };
@@ -92,6 +97,10 @@ export type ReleaseGroupCoverTaskResult = {
 
 export type ReleaseGroupReleaseCoverTaskResult = {
   releaseGroupId: string;
+  covers: { [releaseId: string]: RemoteValueState };
+};
+
+export type NewReleaseCoverTaskResult = {
   covers: { [releaseId: string]: RemoteValueState };
 };
 

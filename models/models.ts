@@ -4,20 +4,23 @@ export interface ArtistCredit extends ArtistMinimal {
   joinphrase: string | null;
 }
 
-export interface ReleaseMinimal {
+interface ReleaseBase {
   id: string;
   title: string;
   date: string | null;
   disambiguation: string | null;
-  releaseGroupId: string | null;
-  cover_url: RemoteValueState;
 }
 
-export interface ReleaseGroup {
+export interface ReleaseGroup extends ReleaseBase {
+  "primary-type": string | null;
+}
+
+export interface NewRelease {
   id: string;
   title: string;
-  date: string | null;
   disambiguation: string | null;
+  artistNames: string;
+  date_for_display: string;
   "primary-type": string | null;
 }
 
@@ -25,12 +28,14 @@ export interface ArtistReleaseGroup extends ReleaseGroup {
   releaseIds: string[];
 }
 
-export interface Release extends ReleaseMinimal {
+export interface Release extends ReleaseBase {
   artistId: string;
   date_for_display: string;
   "release-group": ReleaseGroup | null;
   "artist-credit": ArtistCredit[];
   media: Media[];
+  releaseGroupId: string | null;
+  cover_url: RemoteValueState;
 }
 
 export interface Media {
@@ -86,7 +91,7 @@ export interface ReleaseResult {
 }
 
 export type NewReleasesResult = {
-  releases: Release[];
+  releases: NewRelease[];
   releaseCoverTaskId: string;
 };
 

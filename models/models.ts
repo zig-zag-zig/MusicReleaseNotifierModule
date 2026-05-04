@@ -19,7 +19,7 @@ export interface NewRelease {
   id: string;
   title: string;
   disambiguation: string | null;
-  artistNames: string;
+  artistNames: string[];
   date_for_display: string;
   "primary-type": string | null;
 }

@@ -50,16 +50,15 @@ export interface Track {
   length: number | null;
 }
 
-export interface ArtistMinimal {
-  id: string;
+export interface ArtistMinimal extends ArtistBasic {
   disambiguation: string | null;
-  name: string;
 }
 
 export interface Artist extends ArtistMinimal {
   type: "Person" | "Group";
   aliases: { name: string }[];
   members: Member[];
+  discogsUrls?: string[];
   lifeSpan: {
     begin: string | null;
     end: string | null;
@@ -80,8 +79,13 @@ export interface Member {
   direction: "forward" | "backward"
 }
 
+export interface ArtistBasic {
+  id: string;
+  name: string;
+}
+
 export interface ArtistSearchResult {
-  artists: Artist[];
+  artists: ArtistBasic[];
   count: number;
 }
 

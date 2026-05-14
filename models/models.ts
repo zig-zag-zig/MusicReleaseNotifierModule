@@ -1,5 +1,53 @@
 export type RemoteValueState = string | null | undefined;
 
+export type ExternalLinkCategory =
+  | "streaming"
+  | "social"
+  | "database"
+  | "lyrics"
+  | "live"
+  | "store"
+  | "official"
+  | "other";
+
+export type ExternalLinkService =
+  | "spotify"
+  | "appleMusic"
+  | "youtube"
+  | "youtubeMusic"
+  | "bandcamp"
+  | "soundcloud"
+  | "tidal"
+  | "deezer"
+  | "qobuz"
+  | "amazonMusic"
+  | "discogs"
+  | "wikidata"
+  | "wikipedia"
+  | "allMusic"
+  | "rateYourMusic"
+  | "lastFm"
+  | "genius"
+  | "setlistFm"
+  | "songkick"
+  | "bandsintown"
+  | "instagram"
+  | "facebook"
+  | "x"
+  | "tiktok"
+  | "patreon"
+  | "linktree"
+  | "official"
+  | "other";
+
+export interface ExternalLink {
+  service: ExternalLinkService;
+  label: string;
+  url: string;
+  icon: ExternalLinkService;
+  category: ExternalLinkCategory;
+}
+
 export interface ArtistCredit extends ArtistMinimal {
   joinphrase: string | null;
 }
@@ -36,6 +84,7 @@ export interface Release extends ReleaseBase {
   media: Media[];
   releaseGroupId: string | null;
   cover_url: RemoteValueState;
+  externalLinks: ExternalLink[];
 }
 
 export interface Media {
@@ -60,7 +109,7 @@ export interface Artist extends ArtistMinimal {
   disambiguation: string | null;
   aliases: { name: string }[];
   members: Member[];
-  discogsUrls?: string[];
+  externalLinks: ExternalLink[];
   lifeSpan: {
     begin: string | null;
     end: string | null;
